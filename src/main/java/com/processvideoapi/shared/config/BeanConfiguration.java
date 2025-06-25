@@ -2,11 +2,10 @@ package com.processvideoapi.shared.config;
 
 import com.processvideoapi.adapters.controllers.PaymentController;
 import com.processvideoapi.core.ports.gateways.*;
-import com.processvideoapi.core.ports.usecases.Payment.CreatePaymentUseCasePort;
+import com.processvideoapi.core.ports.usecases.Payment.ProcessVideoUseCasePort;
 import com.processvideoapi.core.ports.usecases.Payment.GetPaymentByOrderUseCasePort;
-import com.processvideoapi.core.ports.usecases.Payment.PaymentWebhookUseCasePort;
 import com.processvideoapi.core.ports.usecases.Payment.UpdatePaymentStatusUseCasePort;
-import com.processvideoapi.core.usecases.Payment.CreatePaymentUseCase;
+import com.processvideoapi.core.usecases.Payment.ProcessVideoUseCase;
 import com.processvideoapi.core.usecases.Payment.GetPaymentByOrderUseCase;
 import com.processvideoapi.core.usecases.Payment.UpdatePaymentStatusUseCase;
 import org.modelmapper.ModelMapper;
@@ -30,13 +29,13 @@ public class BeanConfiguration {
 
     @Bean
     public PaymentController paymentController(
-                                               CreatePaymentUseCasePort createPaymentUseCasePort, GetPaymentByOrderUseCasePort getPaymentByOrderUseCasePort, UpdatePaymentStatusUseCasePort updatePaymentStatusUseCasePort){
+            ProcessVideoUseCasePort createPaymentUseCasePort, GetPaymentByOrderUseCasePort getPaymentByOrderUseCasePort, UpdatePaymentStatusUseCasePort updatePaymentStatusUseCasePort){
         return new PaymentController(createPaymentUseCasePort, getPaymentByOrderUseCasePort, updatePaymentStatusUseCasePort);
     }
 
     @Bean
-    public CreatePaymentUseCasePort createPaymentUseCasePort(PaymentGatewayPort paymentGatewayPort){
-        return new CreatePaymentUseCase(paymentGatewayPort);
+    public ProcessVideoUseCasePort createPaymentUseCasePort(PaymentGatewayPort paymentGatewayPort){
+        return new ProcessVideoUseCase(paymentGatewayPort);
     }
 
     @Bean

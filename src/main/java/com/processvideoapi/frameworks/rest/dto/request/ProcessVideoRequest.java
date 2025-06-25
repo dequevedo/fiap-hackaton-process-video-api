@@ -1,6 +1,5 @@
 package com.processvideoapi.frameworks.rest.dto.request;
 
-import com.processvideoapi.core.domain.enumeration.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreatePaymentRequest {
+public class ProcessVideoRequest {
     private Long orderId;
     private String status;
     private String paymentType;
