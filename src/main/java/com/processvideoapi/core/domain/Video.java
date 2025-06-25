@@ -1,11 +1,9 @@
 package com.processvideoapi.core.domain;
-import com.processvideoapi.core.domain.enumeration.PaymentStatus;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class Payment {
+public class Video {
     private String id;
     private Long orderId;
     private String status;
@@ -14,10 +12,10 @@ public class Payment {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Payment() {
+    public Video() {
     }
 
-    public Payment(String id, Long orderId, String status, String paymentType, Map<String, Object> integrationData, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Video(String id, Long orderId, String status, String paymentType, Map<String, Object> integrationData, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.orderId = orderId;
         this.status = status;
@@ -27,7 +25,7 @@ public class Payment {
         this.updatedAt = updatedAt;
     }
 
-    public Payment(String id, Long orderId, String status, String paymentType) {
+    public Video(String id, Long orderId, String status, String paymentType) {
         this.id = id;
         this.orderId = orderId;
         this.status = status;

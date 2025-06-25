@@ -1,7 +1,9 @@
 package com.processvideoapi.core.ports.usecases.Payment;
 
-import com.processvideoapi.core.domain.Payment;
+import com.processvideoapi.core.domain.Video;
 
 public interface ProcessVideoUseCasePort {
-    Payment createPayment(Payment payment);
+
+    Video processVideo(Video payment);
+
 }
