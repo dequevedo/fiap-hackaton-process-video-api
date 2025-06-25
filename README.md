@@ -44,27 +44,6 @@ Microserviço responsável pelo processo de gestão de pagamentos da lanchonete 
 
 ---
 
-### **Acessando a documentação OpenAPI/Swagger**
-
-- A documentação da API pode ser acessada através do Swagger UI. Abra o seguinte URL no seu navegador:
-  ```sh
-  http://localhost:8080/swagger-ui/index.html
-  ```
-
----
-
-## 🔌 Endpoints Disponíveis
-
-| Método | Rota                        | Descrição                                       |
-|--------|-----------------------------|-------------------------------------------------|
-| POST   | /payments/qrcode             | Cria um pagamento e gera um QR Code             |
-| GET    | /payments/order/{orderId}    | Retorna os pagamentos de um pedido específico   |
-| PUT    | /payments/order/{orderId}/simulate | Atualiza o status do pagamento por ID         |
-
-> A documentação completa pode ser acessada via Swagger.
-
----
-
 ## 🧠 Arquitetura
 
 Este microserviço adota o padrão **Clean Architecture**, com foco em separação de responsabilidades e independência tecnológica.
