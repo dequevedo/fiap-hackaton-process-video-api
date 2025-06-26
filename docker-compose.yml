@@ -1,31 +1,21 @@
 version: '3.5'
 
 services:
-  mongo-payment:
-    container_name: mongo_payment_container
-    image: mongo:6
-    restart: unless-stopped
-    ports:
-      - "27017:27017"
-    networks:
-      - payment-network
-    volumes:
-      - mongo_payment_data:/data/db
-
-  mongo-express:
-    container_name: mongo_express_payment
-    image: mongo-express
-    restart: unless-stopped
-    ports:
-      - "8084:8081"
+  postgres-video:
+    container_name: postgres_video_container
+    image: postgres:16
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongo-payment
-      ME_CONFIG_BASICAUTH_USERNAME: admin
-      ME_CONFIG_BASICAUTH_PASSWORD: admin
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres-api-order}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_order:/data/postgres
+    ports:
+      - "5434:5432"
     networks:
-      - payment-network
-    depends_on:
-      - mongo-payment
+      - order-network
+    restart: unless-stopped
 
 networks:
   payment-network:
