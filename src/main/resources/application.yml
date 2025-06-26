@@ -19,6 +19,18 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  cloud:
+    aws:
+      credentials:
+        access-key: test
+        secret-key: test
+      region:
+        static: us-east-1
+      endpoint: http://localhost:4566
+    s3:
+      endpoint: http://localhost:4566
+      path-style-access-enabled: true
+
   messages:
     basename: messages
     encoding: UTF-8
