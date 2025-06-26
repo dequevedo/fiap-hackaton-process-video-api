@@ -10,16 +10,32 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-postgres-api-order}
       PGDATA: /data/postgres
     volumes:
-      - postgres_order:/data/postgres
+      - postgres_video_container:/data/postgres
     ports:
       - "5434:5432"
     networks:
-      - order-network
+      - video-process-network
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@admin.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_container:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5052}:80"
+    networks:
+      - video-process-network
     restart: unless-stopped
 
 networks:
-  payment-network:
+  video-process-network:
     driver: bridge
 
 volumes:
-  mongo_payment_data:
+  postgres_video_container:
+  pgadmin_container:
