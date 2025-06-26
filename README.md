@@ -22,27 +22,49 @@ Microserviço responsável pelo processo de gestão de pagamentos da lanchonete 
 
 ## ▶️ Executando a API Localmente
 
-### **Pré-requisitos:**
+### ✅ Pré-requisitos
 - **Docker** + **Docker Compose**
-- **Java 21** (caso queira rodar pela IDE)
+- **Java 21**
 
-### **Passos para executar:**
+---
+
+### 🚀 Como rodar o projeto
+
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/RenatoMartinsXrd/fiap-soat-tech-challenge-payment-api.git
-   cd fiap-soat-tech-challenge-payment-api
+   git clone https://github.com/dequevedo/fiap-hackaton-process-video-api.git
+   cd fiap-hackaton-process-video-api
    ```
 
-2. Utilize o Docker Compose para rodar o serviço localmente:
+2. Suba os containers (incluindo o serviço S3 via LocalStack):
    ```bash
    docker-compose up --build
    ```
 
-3. A API estará disponível em [http://localhost:8080](http://localhost:8080).
-
-4. Caso precise acessar o banco de dados, pode usar o Mongo Compass ou outra ferramenta de sua preferência.
+3. A API estará disponível em:  
+   [http://localhost:8080](http://localhost:8080)
 
 ---
+
+### ⚙️ Configurando variáveis de ambiente no IntelliJ (para rodar via IDE)
+
+1. Acesse: `Run > Edit Configurations…`
+2. Selecione sua aplicação
+3. Em **Environment variables**, adicione:
+
+```
+AWS_ACCESS_KEY_ID=test;AWS_SECRET_ACCESS_KEY=test;AWS_REGION=us-east-1
+```
+
+---
+
+### 🧪 Criando bucket S3 localmente (opcional)
+
+Se necessário, crie um bucket S3 com o seguinte comando:
+
+```bash
+aws --endpoint-url=http://localhost:4566 s3 mb s3://meu-bucket
+```
 
 ## 🧠 Arquitetura
 
