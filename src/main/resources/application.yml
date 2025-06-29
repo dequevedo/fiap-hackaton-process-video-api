@@ -27,9 +27,9 @@ spring:
       region:
         static: us-east-1
       endpoint: http://localhost:4566
-    s3:
-      endpoint: http://localhost:4566
-      path-style-access-enabled: true
+      s3:
+        bucket: video-uploads
+        path-style-access-enabled: true
 
   messages:
     basename: messages

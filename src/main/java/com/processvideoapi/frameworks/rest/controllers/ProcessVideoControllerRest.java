@@ -19,9 +19,9 @@ public class ProcessVideoControllerRest {
         this.genericConverter = genericConverter;
     }
 
-    @PostMapping("/qrcode")
-    public ResponseEntity<Video> processVideo(@RequestBody ProcessVideoRequest paymentRequest) {
-        Video paymentInput = genericConverter.toDomain(paymentRequest, Video.class);
+    @PostMapping
+    public ResponseEntity<Video> processVideo(@RequestBody ProcessVideoRequest processVideoRequest) {
+        Video paymentInput = genericConverter.toDomain(processVideoRequest, Video.class);
         return ResponseEntity.ok(paymentController.processVideo(paymentInput));
     }
 

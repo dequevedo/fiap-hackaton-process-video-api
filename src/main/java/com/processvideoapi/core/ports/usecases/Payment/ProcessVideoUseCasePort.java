@@ -4,6 +4,6 @@ import com.processvideoapi.core.domain.Video;
 
 public interface ProcessVideoUseCasePort {
 
-    Video processVideo(Video payment);
+    Video processVideo(Video video);
 
 }

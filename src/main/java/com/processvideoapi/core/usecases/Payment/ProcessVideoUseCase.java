@@ -1,16 +1,21 @@
 package com.processvideoapi.core.usecases.Payment;
 import com.processvideoapi.core.domain.Video;
-import com.processvideoapi.core.ports.gateways.VideoGatewayPort;
+import com.processvideoapi.core.ports.gateways.VideoDatabaseGateway;
+import com.processvideoapi.core.ports.gateways.VideoStorageGateway;
 import com.processvideoapi.core.ports.usecases.Payment.ProcessVideoUseCasePort;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 
 public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
 
-    private final VideoGatewayPort videoGatewayPort;
+    private final VideoDatabaseGateway videoDatabaseGateway;
 
-    public ProcessVideoUseCase(VideoGatewayPort videoGatewayPort) {
-        this.videoGatewayPort = videoGatewayPort;
+    private final VideoStorageGateway videoStorageGateway;
+
+    public ProcessVideoUseCase(VideoDatabaseGateway videoDatabaseGateway, VideoStorageGateway videoStorageGateway) {
+        this.videoDatabaseGateway = videoDatabaseGateway;
+        this.videoStorageGateway = videoStorageGateway;
     }
 
     @Override
@@ -18,7 +23,12 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
         video.setStatus("PENDING");
         video.setCreatedAt(LocalDateTime.now());
 
-        return videoGatewayPort.save(video);
+        videoDatabaseGateway.save(video);
+
+        InputStream fakeStream = InputStream.nullInputStream();
+        videoStorageGateway.upload("video/" + video.getId(), fakeStream, 0L, "application/octet-stream");
+
+        return video;
     }
 
 }
