@@ -20,13 +20,13 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
 
     @Override
     public Video processVideo(Video video) {
-        video.setStatus("PENDING");
-        video.setCreatedAt(LocalDateTime.now());
+//        video.setStatus("PENDING");
+//        video.setCreatedAt(LocalDateTime.now());
 
         videoDatabaseGateway.save(video);
 
         InputStream fakeStream = InputStream.nullInputStream();
-        videoStorageGateway.upload("video/" + video.getId(), fakeStream, 0L, "application/octet-stream");
+        videoStorageGateway.upload("video-uploads/" + video.getId(), fakeStream, 0L, "application/octet-stream");
 
         return video;
     }
