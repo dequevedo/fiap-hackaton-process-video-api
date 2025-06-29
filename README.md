@@ -1,4 +1,3 @@
-
 # Tech Challenge - Payment API
 
 Microserviço responsável pelo processo de gestão de pagamentos da lanchonete digital.
@@ -58,13 +57,27 @@ AWS_ACCESS_KEY_ID=test;AWS_SECRET_ACCESS_KEY=test;AWS_REGION=us-east-1
 
 ---
 
-### 🧪 Criando bucket S3 localmente (opcional)
+### 🧪 Criando e testando o bucket S3 no LocalStack
 
-Se necessário, crie um bucket S3 com o seguinte comando:
+**Listar todos os buckets existentes**
+   ```bash
+   docker exec -it localstack awslocal s3 ls
+   ```
 
-```bash
-aws --endpoint-url=http://localhost:4566 s3 mb s3://meu-bucket
-```
+**Listar arquivos de dentro do bucket**
+   ```bash
+   docker exec -it localstack awslocal s3 ls s3://video-uploads
+   ```
+
+**Exemplo de upload com curl**
+   ```bash
+   curl -X POST http://localhost:8080/process-video \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@/caminho/para/video.mp4" \
+     -F "userId=123"
+   ```
+
+---
 
 ## 🧠 Arquitetura
 
@@ -85,13 +98,11 @@ Os testes são realizados com **JUnit** e **Mockito** para garantir a qualidade 
 ### **Execução dos testes**
 
 1. No diretório do repositório, execute o comando Maven para rodar os testes:
-
    ```bash
    mvn test
    ```
 
 2. Para gerar o relatório de cobertura de testes com **Jacoco**, execute:
-
    ```bash
    mvn clean verify
    ```
@@ -104,5 +115,3 @@ Os testes são realizados com **JUnit** e **Mockito** para garantir a qualidade 
 
 - Renato Martins - @RenatoMartinsXrd
 - Daniel Quevedo - @dequevedo
-
----
