@@ -3,9 +3,10 @@ import com.processvideoapi.core.domain.Video;
 import com.processvideoapi.core.ports.gateways.VideoDatabaseGateway;
 import com.processvideoapi.core.ports.gateways.VideoStorageGateway;
 import com.processvideoapi.core.ports.usecases.Payment.ProcessVideoUseCasePort;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
 
 public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
 
@@ -19,14 +20,19 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
     }
 
     @Override
-    public Video processVideo(Video video) {
-//        video.setStatus("PENDING");
-//        video.setCreatedAt(LocalDateTime.now());
-
+    public Video processVideo(Video video, MultipartFile file) {
         videoDatabaseGateway.save(video);
 
-        InputStream fakeStream = InputStream.nullInputStream();
-        videoStorageGateway.upload("video-uploads/" + video.getId(), fakeStream, 0L, "application/octet-stream");
+        try (InputStream in = file.getInputStream()) {
+            videoStorageGateway.upload(
+                    video.getFileName(),
+                    in,
+                    file.getSize(),
+                    file.getContentType()
+            );
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao ler o arquivo", e);
+        }
 
         return video;
     }
