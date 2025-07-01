@@ -6,6 +6,7 @@ target/
 .env.local
 .env.prod
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -35,4 +36,10 @@ build/
 .vscode/
 /.RestfulApiTool/
 /.env
-videos/video1.mp4
+
+#### Video files ###
+*.mp4
+*.mov
+*.avi
+*.mkv
+videos/
