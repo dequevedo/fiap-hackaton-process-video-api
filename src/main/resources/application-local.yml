@@ -25,5 +25,5 @@ spring:
         static: us-east-1
       endpoint: http://localhost:4566
       s3:
-        bucket: video-uploads
+        bucket: ${SPRING_CLOUD_AWS_BUCKET:hackaton-video-uploads}
         path-style-access-enabled: true
