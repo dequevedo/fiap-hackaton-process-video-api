@@ -28,7 +28,7 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
 
         try (InputStream inputStream = file.getInputStream()) {
             videoStorageGateway.upload(
-                    video.getId(),
+                    file.getOriginalFilename(),
                     inputStream,
                     video.getSize(),
                     file.getContentType()
