@@ -21,13 +21,16 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
 
     @Override
     public Video processVideo(Video video, MultipartFile file) {
+        video.setUserId("someUserId");
+        video.setSize(file.getSize());
+
         videoDatabaseGateway.save(video);
 
-        try (InputStream in = file.getInputStream()) {
+        try (InputStream inputStream = file.getInputStream()) {
             videoStorageGateway.upload(
-                    video.getFileName(),
-                    in,
-                    file.getSize(),
+                    video.getId(),
+                    inputStream,
+                    video.getSize(),
                     file.getContentType()
             );
         } catch (IOException e) {

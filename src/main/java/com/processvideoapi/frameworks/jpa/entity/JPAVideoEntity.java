@@ -16,13 +16,14 @@ import java.time.LocalDateTime;
 public class JPAVideoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     String fileName;
 
     String userId;
 
     LocalDateTime uploadedAt;
+
+    Long size;
 
 }

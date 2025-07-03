@@ -1,22 +1,23 @@
 package com.processvideoapi.core.domain;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Video {
 
-    private String id;
-
+    private final String id;
     private String fileName;
-
     private String userId;
-
     private LocalDateTime uploadedAt;
+    private Long size;
 
     public Video() {
+        this.id = UUID.randomUUID().toString();
+        this.uploadedAt = LocalDateTime.now();
     }
 
-    public Video(String id, String fileName, String userId, LocalDateTime uploadedAt) {
-        this.id = id;
+    public Video(String fileName, String userId, LocalDateTime uploadedAt) {
+        this.id = UUID.randomUUID().toString();
         this.fileName = fileName;
         this.userId = userId;
         this.uploadedAt = uploadedAt;
@@ -24,10 +25,6 @@ public class Video {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFileName() {
@@ -50,7 +47,12 @@ public class Video {
         return uploadedAt;
     }
 
-    public void setUploadedAt(LocalDateTime uploadedAt) {
-        this.uploadedAt = uploadedAt;
+    public Long getSize() {
+        return size;
     }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
 }

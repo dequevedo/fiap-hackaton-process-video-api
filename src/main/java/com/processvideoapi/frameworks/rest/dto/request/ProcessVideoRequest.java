@@ -11,12 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProcessVideoRequest {
 
-    private String title;
-
     private String fileName;
-
-    private String contentType;
-
-    private long size;
 
 }
