@@ -26,3 +26,5 @@ spring:
       s3:
         bucket: ${SPRING_CLOUD_AWS_BUCKET}
         path-style-access-enabled: false
+      sqs:
+        queue-name: ${SPRING_CLOUD_AWS_QUEUE_NAME}

@@ -27,3 +27,5 @@ spring:
       s3:
         bucket: ${SPRING_CLOUD_AWS_BUCKET:hackaton-video-uploads}
         path-style-access-enabled: true
+      sqs:
+        queue-name: ${SPRING_CLOUD_AWS_QUEUE_NAME:hackaton-video-queue}

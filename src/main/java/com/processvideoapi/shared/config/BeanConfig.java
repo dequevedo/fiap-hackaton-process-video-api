@@ -2,6 +2,7 @@ package com.processvideoapi.shared.config;
 
 import com.processvideoapi.adapters.controllers.PaymentController;
 import com.processvideoapi.core.ports.gateways.VideoDatabaseGateway;
+import com.processvideoapi.core.ports.gateways.VideoQueueGateway;
 import com.processvideoapi.core.ports.gateways.VideoStorageGateway;
 import com.processvideoapi.core.ports.usecases.Payment.ProcessVideoUseCasePort;
 import com.processvideoapi.core.usecases.Payment.ProcessVideoUseCase;
@@ -23,7 +24,7 @@ public class BeanConfig {
     }
 
     @Bean
-    public ProcessVideoUseCasePort createOrderUseCasePort(VideoDatabaseGateway videoDatabaseGateway, VideoStorageGateway videoStorageGateway) {
-        return new ProcessVideoUseCase(videoDatabaseGateway, videoStorageGateway);
+    public ProcessVideoUseCasePort createOrderUseCasePort(VideoDatabaseGateway videoDatabaseGateway, VideoStorageGateway videoStorageGateway, VideoQueueGateway videoQueueGateway) {
+        return new ProcessVideoUseCase(videoDatabaseGateway, videoStorageGateway, videoQueueGateway);
     }
 }
