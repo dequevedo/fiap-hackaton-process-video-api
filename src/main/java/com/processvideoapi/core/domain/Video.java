@@ -1,5 +1,7 @@
 package com.processvideoapi.core.domain;
 
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -10,6 +12,7 @@ public class Video {
     private String userId;
     private LocalDateTime uploadedAt;
     private Long size;
+    private String storageUrl;
 
     public Video() {
         this.id = UUID.randomUUID().toString();
@@ -53,6 +56,14 @@ public class Video {
 
     public void setSize(Long size) {
         this.size = size;
+    }
+
+    public String getStorageUrl() {
+        return storageUrl;
+    }
+
+    public void setStorageUrl(String storageUrl) {
+        this.storageUrl = storageUrl;
     }
 
 }

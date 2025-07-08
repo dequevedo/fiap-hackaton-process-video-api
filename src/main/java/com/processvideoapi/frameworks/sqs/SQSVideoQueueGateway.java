@@ -10,6 +10,8 @@ import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.GetQueueUrlRequest;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 
+import java.time.LocalDateTime;
+
 @Component
 public class SQSVideoQueueGateway implements VideoQueueGateway {
 
@@ -30,24 +32,19 @@ public class SQSVideoQueueGateway implements VideoQueueGateway {
     }
 
     @Override
-    public void send(Video video) {
-        try {
-            String message = objectMapper.writeValueAsString(video);
+    public void send(String storageUrl, LocalDateTime uploadedAt) {
+        String queueUrl = sqsClient.getQueueUrl(
+                GetQueueUrlRequest.builder()
+                        .queueName(queueName)
+                        .build()
+        ).queueUrl();
 
-            String queueUrl = sqsClient.getQueueUrl(
-                    GetQueueUrlRequest.builder()
-                            .queueName(queueName)
-                            .build()
-            ).queueUrl();
+        SendMessageRequest request = SendMessageRequest.builder()
+                .queueUrl(queueUrl)
+                .messageBody(storageUrl)
+                .messageBody(uploadedAt.toString())
+                .build();
 
-            SendMessageRequest request = SendMessageRequest.builder()
-                    .queueUrl(queueUrl)
-                    .messageBody(message)
-                    .build();
-
-            sqsClient.sendMessage(request);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Erro ao serializar vídeo para JSON", e);
-        }
+        sqsClient.sendMessage(request);
     }
 }

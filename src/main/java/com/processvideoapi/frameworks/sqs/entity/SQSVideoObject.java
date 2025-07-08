@@ -15,8 +15,6 @@ public class SQSVideoObject {
 
     private String key;
 
-    private InputStream inputStream;
-
     private long contentLength;
 
     private String contentType;

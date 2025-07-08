@@ -1,9 +1,9 @@
 package com.processvideoapi.core.ports.gateways;
 
-import com.processvideoapi.core.domain.Video;
+import java.time.LocalDateTime;
 
 public interface VideoQueueGateway {
 
-    void send(Video video);
+    void send(String storageUrl, LocalDateTime uploadedAt);
 
 }

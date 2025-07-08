@@ -31,11 +31,14 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
         video.setUserId("someUserId"); // TODO: pegar o ID real do usuário
         video.setSize(file.getSize());
 
+        String storageKey = file.getOriginalFilename();
+
         uploadToStorage(file, video);
 
-        videoDatabaseGateway.save(video);
+        video.setStorageUrl(buildStorageUrl(video));
 
-        videoQueueGateway.send(video);
+        videoDatabaseGateway.save(video);
+        videoQueueGateway.send(storageKey, video.getUploadedAt());
 
         return video;
     }
@@ -51,5 +54,18 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
         } catch (IOException e) {
             throw new RuntimeException("Erro ao fazer upload para o S3", e);
         }
+    }
+
+    private String buildStorageUrl(Video video) {
+        String bucketName = videoStorageGateway.getBucketName();
+        String region = videoStorageGateway.getRegion();
+        String storageKey = video.getFileName();
+
+        return String.format(
+                "https://%s.s3.%s.amazonaws.com/%s",
+                bucketName,
+                region,
+                storageKey
+        );
     }
 }

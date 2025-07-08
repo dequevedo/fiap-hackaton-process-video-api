@@ -6,4 +6,8 @@ public interface VideoStorageGateway {
 
     void upload(String key, InputStream inputStream, long contentLength, String contentType);
 
+    String getBucketName();
+
+    String getRegion();
+
 }
