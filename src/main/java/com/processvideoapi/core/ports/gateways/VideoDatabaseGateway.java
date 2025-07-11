@@ -6,4 +6,6 @@ public interface VideoDatabaseGateway {
 
     Video save(Video video);
 
+    Video get(Long id);
+
 }

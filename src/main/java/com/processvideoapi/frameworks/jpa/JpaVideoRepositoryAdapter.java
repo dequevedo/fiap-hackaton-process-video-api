@@ -17,10 +17,14 @@ public class JpaVideoRepositoryAdapter implements VideoDatabaseGateway {
     @Override
     public Video save(Video video) {
         JPAVideoEntity videoEntity = modelMapper.map(video, JPAVideoEntity.class);
+        JPAVideoEntity savedVideoEntity = jpaRepository.save(videoEntity);
+        return modelMapper.map(savedVideoEntity, Video.class);
+    }
 
-        JPAVideoEntity savedOrderEntity = jpaRepository.save(videoEntity);
-
-        return modelMapper.map(savedOrderEntity, Video.class);
+    @Override
+    public Video get(Long id) {
+        JPAVideoEntity videoEntity = jpaRepository.findById(id).orElseThrow();
+        return modelMapper.map(videoEntity, Video.class);
     }
 
 }

@@ -5,6 +5,7 @@ import com.processvideoapi.adapters.controllers.VideoController;
 import com.processvideoapi.adapters.presenters.GenericConverter;
 import com.processvideoapi.core.domain.Video;
 import com.processvideoapi.frameworks.rest.dto.request.ProcessVideoRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,11 @@ import java.io.IOException;
 @RequestMapping("/process-video")
 public class ProcessVideoControllerRest {
 
-    private final VideoController paymentController;
+    private final VideoController videoController;
     private final GenericConverter genericConverter;
 
-    public ProcessVideoControllerRest(VideoController paymentController, GenericConverter genericConverter) {
-        this.paymentController = paymentController;
+    public ProcessVideoControllerRest(VideoController videoController, GenericConverter genericConverter) {
+        this.videoController = videoController;
         this.genericConverter = genericConverter;
     }
 
@@ -35,8 +36,19 @@ public class ProcessVideoControllerRest {
         Video video = genericConverter.toDomain(processVideoRequest, Video.class);
         video.setFileName(file.getOriginalFilename());
 
-        return ResponseEntity.ok(paymentController.processVideo(video, file));
+        Video response = videoController.processVideo(video, file);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(response);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Video> getVideoById(@PathVariable Long id) {
+        Video response = videoController.getVideo(id);
 
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+    }
 }
