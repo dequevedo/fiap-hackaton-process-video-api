@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class JpaVideoRepositoryAdapter implements VideoDatabaseGateway {
@@ -25,6 +27,15 @@ public class JpaVideoRepositoryAdapter implements VideoDatabaseGateway {
     public Video get(String id) {
         JPAVideoEntity videoEntity = jpaRepository.findById(id).orElseThrow();
         return modelMapper.map(videoEntity, Video.class);
+    }
+
+    @Override
+    public List<Video> getAllVideosByUserId(String userId) {
+        List<JPAVideoEntity> videoEntities = jpaRepository.findAllByUserId(userId);
+
+        return videoEntities.stream()
+                .map(entity -> modelMapper.map(entity, Video.class))
+                .toList();
     }
 
 }

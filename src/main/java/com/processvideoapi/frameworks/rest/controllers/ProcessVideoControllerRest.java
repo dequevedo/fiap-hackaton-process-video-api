@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/video")
@@ -51,4 +52,14 @@ public class ProcessVideoControllerRest {
                 .status(HttpStatus.OK)
                 .body(response);
     }
+
+    @GetMapping(path = "/user/{userId}")
+    public ResponseEntity<List<Video>> getAllVideosByUser(@PathVariable String userId) {
+        List<Video> videos = videoController.getAllVideosByUserId(userId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(videos);
+    }
+
 }
