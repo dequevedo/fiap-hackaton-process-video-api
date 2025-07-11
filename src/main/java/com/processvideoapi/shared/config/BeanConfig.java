@@ -1,6 +1,6 @@
 package com.processvideoapi.shared.config;
 
-import com.processvideoapi.adapters.controllers.PaymentController;
+import com.processvideoapi.adapters.controllers.VideoController;
 import com.processvideoapi.core.ports.gateways.VideoDatabaseGateway;
 import com.processvideoapi.core.ports.gateways.VideoQueueGateway;
 import com.processvideoapi.core.ports.gateways.VideoStorageGateway;
@@ -19,8 +19,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public PaymentController paymentController(ProcessVideoUseCasePort createPaymentUseCasePort) {
-        return new PaymentController(createPaymentUseCasePort);
+    public VideoController paymentController(ProcessVideoUseCasePort createPaymentUseCasePort) {
+        return new VideoController(createPaymentUseCasePort);
     }
 
     @Bean

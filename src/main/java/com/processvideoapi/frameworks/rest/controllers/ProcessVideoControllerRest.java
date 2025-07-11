@@ -1,7 +1,7 @@
 package com.processvideoapi.frameworks.rest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.processvideoapi.adapters.controllers.PaymentController;
+import com.processvideoapi.adapters.controllers.VideoController;
 import com.processvideoapi.adapters.presenters.GenericConverter;
 import com.processvideoapi.core.domain.Video;
 import com.processvideoapi.frameworks.rest.dto.request.ProcessVideoRequest;
@@ -16,10 +16,10 @@ import java.io.IOException;
 @RequestMapping("/process-video")
 public class ProcessVideoControllerRest {
 
-    private final PaymentController paymentController;
+    private final VideoController paymentController;
     private final GenericConverter genericConverter;
 
-    public ProcessVideoControllerRest(PaymentController paymentController, GenericConverter genericConverter) {
+    public ProcessVideoControllerRest(VideoController paymentController, GenericConverter genericConverter) {
         this.paymentController = paymentController;
         this.genericConverter = genericConverter;
     }

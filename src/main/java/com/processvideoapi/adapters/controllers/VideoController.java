@@ -4,11 +4,11 @@ import com.processvideoapi.core.domain.Video;
 import com.processvideoapi.core.ports.usecases.Payment.ProcessVideoUseCasePort;
 import org.springframework.web.multipart.MultipartFile;
 
-public class PaymentController {
+public class VideoController {
 
     private final ProcessVideoUseCasePort processVideoUseCasePort;
 
-    public PaymentController(ProcessVideoUseCasePort createPaymentUseCasePort) {
+    public VideoController(ProcessVideoUseCasePort createPaymentUseCasePort) {
         this.processVideoUseCasePort = createPaymentUseCasePort;
     }
 

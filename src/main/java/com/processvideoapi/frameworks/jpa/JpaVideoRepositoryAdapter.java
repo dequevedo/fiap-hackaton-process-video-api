@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class JpaOrderRepositoryAdapter implements VideoDatabaseGateway {
+public class JpaVideoRepositoryAdapter implements VideoDatabaseGateway {
 
     private final JpaVideoRepository jpaRepository;
     private final ModelMapper modelMapper;
