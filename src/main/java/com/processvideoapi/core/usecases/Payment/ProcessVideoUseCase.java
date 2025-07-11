@@ -1,6 +1,7 @@
 package com.processvideoapi.core.usecases.Payment;
 
 import com.processvideoapi.core.domain.Video;
+import com.processvideoapi.core.domain.enumeration.State;
 import com.processvideoapi.core.ports.gateways.VideoDatabaseGateway;
 import com.processvideoapi.core.ports.gateways.VideoStorageGateway;
 import com.processvideoapi.core.ports.gateways.VideoQueueGateway;
@@ -29,6 +30,7 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
     @Override
     public Video processVideo(Video video, MultipartFile file) {
         video.setUserId("someUserId"); // TODO: pegar o ID real do usuário
+        video.setState(State.EM_PROCESSAMENTO);
         video.setSize(file.getSize());
 
         String storageKey = file.getOriginalFilename();
@@ -38,6 +40,7 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
         video.setStorageUrl(buildStorageUrl(video));
 
         videoDatabaseGateway.save(video);
+
         videoQueueGateway.send(storageKey, video.getUploadedAt());
 
         return video;

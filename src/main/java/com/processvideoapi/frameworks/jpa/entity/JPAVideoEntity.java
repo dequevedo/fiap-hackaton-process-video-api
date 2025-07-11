@@ -1,5 +1,6 @@
 package com.processvideoapi.frameworks.jpa.entity;
 
+import com.processvideoapi.core.domain.enumeration.State;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +26,7 @@ public class JPAVideoEntity {
     LocalDateTime uploadedAt;
 
     Long size;
+
+    State state;
 
 }
