@@ -30,7 +30,7 @@ public class ProcessVideoUseCase implements ProcessVideoUseCasePort {
     @Override
     public Video processVideo(Video video, MultipartFile file) {
         video.setUserId("someUserId"); // TODO: pegar o ID real do usuário
-        video.setState(State.EM_PROCESSAMENTO);
+        video.setState(State.AGUARDANDO_PROCESSAMENTO);
         video.setSize(file.getSize());
 
         String storageKey = file.getOriginalFilename();

@@ -22,7 +22,7 @@ public class JpaVideoRepositoryAdapter implements VideoDatabaseGateway {
     }
 
     @Override
-    public Video get(Long id) {
+    public Video get(String id) {
         JPAVideoEntity videoEntity = jpaRepository.findById(id).orElseThrow();
         return modelMapper.map(videoEntity, Video.class);
     }

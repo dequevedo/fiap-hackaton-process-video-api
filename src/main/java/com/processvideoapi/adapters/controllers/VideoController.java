@@ -19,7 +19,7 @@ public class VideoController {
         return processVideoUseCasePort.processVideo(video, file);
     }
 
-    public Video getVideo(Long id){
+    public Video getVideo(String id){
         return getVideoUseCasePort.getVideo(id);
     }
 

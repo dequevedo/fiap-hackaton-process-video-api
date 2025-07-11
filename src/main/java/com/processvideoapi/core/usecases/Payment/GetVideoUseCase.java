@@ -23,7 +23,7 @@ public class GetVideoUseCase implements GetVideoUseCasePort {
     }
 
     @Override
-    public Video getVideo(Long id) {
+    public Video getVideo(String id) {
         return videoDatabaseGateway.get(id);
     }
 }

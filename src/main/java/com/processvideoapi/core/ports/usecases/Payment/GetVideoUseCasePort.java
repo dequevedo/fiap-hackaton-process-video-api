@@ -4,6 +4,6 @@ import com.processvideoapi.core.domain.Video;
 
 public interface GetVideoUseCasePort {
 
-    Video getVideo(Long id);
+    Video getVideo(String id);
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/process-video")
+@RequestMapping("/video")
 public class ProcessVideoControllerRest {
 
     private final VideoController videoController;
@@ -43,8 +43,8 @@ public class ProcessVideoControllerRest {
                 .body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Video> getVideoById(@PathVariable Long id) {
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Video> getVideoById(@PathVariable String id) {
         Video response = videoController.getVideo(id);
 
         return ResponseEntity
