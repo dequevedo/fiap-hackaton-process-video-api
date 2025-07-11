@@ -63,12 +63,12 @@ jobs:
 
       - name: Construir a imagem Docker com tag latest
         run: |
-          IMAGE_URI=${{ env.ECR_REGISTRY }}/tech-challenge/${{ env.SERVICE_REPO_NAME }}
+          IMAGE_URI=${{ env.ECR_REGISTRY }}/hackaton/${{ env.SERVICE_REPO_NAME }}
           docker build -t $IMAGE_URI:latest .
 
       - name: Enviar a imagem para o Amazon ECR
         run: |
-          IMAGE_URI=${{ env.ECR_REGISTRY }}/tech-challenge/${{ env.SERVICE_REPO_NAME }}
+          IMAGE_URI=${{ env.ECR_REGISTRY }}/hackaton/${{ env.SERVICE_REPO_NAME }}
           docker push $IMAGE_URI:latest
 
 #  deploy:
