@@ -8,11 +8,17 @@ import java.util.UUID;
 public class Video {
 
     private final String id;
+
     private String fileName;
+
     private String userId;
+
     private String storageUrl;
+
     private State state;
+
     private LocalDateTime uploadedAt;
+
     private Long size;
 
     public Video() {

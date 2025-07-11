@@ -23,10 +23,12 @@ public class JPAVideoEntity {
 
     String userId;
 
+    String storageUrl;
+
+    State state;
+
     LocalDateTime uploadedAt;
 
     Long size;
-
-    State state;
 
 }
